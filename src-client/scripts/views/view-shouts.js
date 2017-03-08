@@ -14,9 +14,6 @@ export const ShoutsView = React.createClass({
 	componentDidMount: function(){
 		let component = this;
 		
-		// STORE.onStoreChange(function(){ 
-		// 	component.setState( STORE.getStoreData() ) 
-		// })
 		console.log('fetchyfetch')
 		ACTIONS.fetchAllShouts()
 	
