@@ -2,8 +2,9 @@
 	box-sizing: border-box;
 }
 
-body{
-	font-family: Helvetica;
+@mixin column-container(){
+	font-size: 0;
+	> *{display: inline-block; font-size: medium; vertical-align: top;}
 }
 
 img {
@@ -11,8 +12,57 @@ img {
 	display: block;
 }
 
-h1{
-	text-align: center;
-	font-size: 10vw;
-	color: #2574A9;	
+nav {
+	@include column-container();
+	.nav-option{
+		width : 25%;
+		font-size: 2rem; 
+		color: #fff;
+		text-align: center;
+		padding: 15px 0; 
+		border: 2px solid #ddd;
+		cursor: pointer;
+	}	
+	.nav-option--active{
+		background: #F2784B;
+		text-shadow: 1px 1px 1px #333;
+	}
+
+}
+
+blockquote p {
+	font-size: 2.5rem;
+}
+cite {
+	color: #333;
+	padding: 20px;
+}
+
+.header{
+	min-height: 500px;
+	position: relative;
+
+	background: #D66D75; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #D66D75 , #E29587); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #D66D75 , #E29587); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   text-align: center;
+
+	h1{
+		margin: 0;
+		font-size: 60px;
+		font-weight: 200;
+		color: #fff;
+		text-shadow: 1px 1px 1px solid;
+	}        
+}
+
+.abs-center-me{
+	position: absolute;
+	top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
+.auth-form{
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 10px;
 }

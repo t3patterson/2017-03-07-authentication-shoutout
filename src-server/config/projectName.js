@@ -1,1 +1,1 @@
-module.exports = 'chirp-a-derp'
+module.exports = 'supershoutouts'
