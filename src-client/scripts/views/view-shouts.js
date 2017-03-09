@@ -20,7 +20,7 @@ export const ShoutsView = React.createClass({
 	},
 	
 	render: function(){
-		let sidePanelComponent = <h2>Sign In!</h2> 
+		let sidePanelComponent = <h3 className="text-center" style={{ background: "#67809F", padding: '12px', color: '#ddd', fontWeight: 200}}>Login In to Post</h3> 
 		if(typeof this.props.currentUser._id !== 'undefined'){
 			sidePanelComponent = <NewShoutComponent/>
 
