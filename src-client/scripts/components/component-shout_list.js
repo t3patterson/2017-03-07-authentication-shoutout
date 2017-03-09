@@ -28,7 +28,7 @@ export const ShoutOutListComponent = React.createClass({
       })
 
       return filteredList
-   },
+   }, 
 
    render: function(){
       let self = this

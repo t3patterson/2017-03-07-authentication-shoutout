@@ -6,6 +6,7 @@ import {ACTIONS} from './actions.js';
 import {WelcomeView} from './views/view-welcome.js'
 import {ShoutsView} from './views/view-shouts.js'
 import {RegisterView} from './views/view-register.js'
+import {LoginView} from './views/view-login.js'
 
 export const ViewController = React.createClass({
 	
@@ -17,25 +18,29 @@ export const ViewController = React.createClass({
 
 	componentDidMount: function(){
 		let component = this;
-		STORE.onStoreChange(function(){
-			console.log("STATE CHANGED!")
+		
+	   STORE.onStoreChange(function(){
+			// console.log("STATE CHANGED!")
 			let newStoreObj = STORE.getStoreData()
 			component.setState(newStoreObj)
 		})
+
+		ACTIONS.fetchCurrentUser()
+
 	},	
-	
-	
+		
 	render: function(){
 		
 		let componentToRender
 
 		switch(this.state.currentNavRoute){
+			case "LOGIN":	
+				componentToRender = <LoginView {...this.state}/>
+				break;
 			case "REGISTER":	
-				console.log("SHOWING REGISTER!!")
 				componentToRender = <RegisterView {...this.state}/>
 				break;
  			case "SHOUTS":
-				console.log("SHOWING SHOUTS!!")
 				componentToRender = <ShoutsView {...this.state}  />
 				break;
          case "HOME":
@@ -44,7 +49,7 @@ export const ViewController = React.createClass({
  			default:
 		}
 
-		console.log('APP STATE', this.state)
+		// console.log('APP STATE', this.state)
 		return (
 			<div>
 				<Navbar { ...this.state }/>

@@ -10,9 +10,14 @@ const AppRouter = Backbone.Router.extend({
 	},
 	
 	routes: {
+		'login' : 'showLoginForm',
 		'register' : 'showRegisterForm',
 		'shouts' : 'showShouts',
 		'' : 'showHome'
+	},
+	
+	showLoginForm: function(){
+		ReactDOM.render(<ViewController fromRoute={"LOGIN"} />, document.querySelector('#app-container'))
 	},
 
 	showRegisterForm: function(){

@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
-import {ShoutModel, ShoutCollection} from './models/model-shout.js'
 import {STORE} from './store.js'
+import {ShoutModel, ShoutCollection} from './models/model-shout.js'
+import {UserModel} from './models/model-user.js'
 
 export const ACTIONS = {
 	saveNewShout: function(userFormEntry){
@@ -15,7 +16,7 @@ export const ACTIONS = {
 	
 		let shoutsCollInstance = new ShoutCollection()
 		shoutsCollInstance.fetch().then(function(serverRes){
-			console.log(serverRes)
+			// console.log(serverRes)
 			STORE.setStore('shoutOutList', serverRes)
 		})
 	},
@@ -27,7 +28,31 @@ export const ACTIONS = {
 	changeCurrentNav: function(selectedAppRoute, urlRoute){
 		STORE.setStore('currentNavRoute', selectedAppRoute)
 		window.location.hash = urlRoute
-
+	},
+	
+	registerNewUser: function(newUserInfoObj){
+		UserModel.register(newUserInfoObj).then(function(serverRes){
+			ACTIONS.changeCurrentNav('SHOUTS', 'shouts')		
+		})
+	},
+	
+	loginUser: function(usr, pw){
+		UserModel.logIn(usr, pw).then(function(serverRes){
+			// console.log('authenticated user!!!', serverRes)
+			STORE.setStore('currentUser', serverRes )
+			ACTIONS.changeCurrentNav('SHOUTS', 'shouts')		
+		})
+	},
+	
+	fetchCurrentUser: function(){
+		UserModel.getCurrentUser().then(function(serverRes){
+			console.log(serverRes)
+			if(serverRes.user !== null){
+				STORE.setStore('currentUser', serverRes.user )
+			}
+		})
 	}
+
+
 }
 

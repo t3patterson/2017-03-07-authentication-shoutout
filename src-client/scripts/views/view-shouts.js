@@ -7,28 +7,35 @@ import {ACTIONS} from '../actions.js'
 import {STORE} from '../store.js'
 
 export const ShoutsView = React.createClass({
-	// getInitialState: function(){
-	// 	return STORE.getStoreData() 
-	// },
+	getInitialState: function(){
+		return STORE.getStoreData() 
+	},
 
 	componentDidMount: function(){
 		let component = this;
-		
+
 		console.log('fetchyfetch')
 		ACTIONS.fetchAllShouts()
 	
-		
 	},
 	
 	render: function(){
-		return (
+		let sidePanelComponent = <h2>Sign In!</h2> 
+		if(typeof this.props.currentUser._id !== 'undefined'){
+			sidePanelComponent = <NewShoutComponent/>
 
+		}
+		
+		return (
+			
 			<div className="container">
 
 					<RatingFilterComponent 
 						{...this.props}
 					/>
-					<NewShoutComponent/>
+					
+					{sidePanelComponent}
+
 					<ShoutOutListComponent 
 						{...this.props}
 					/>

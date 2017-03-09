@@ -18,6 +18,8 @@ function authController(UserMod){
          if(err) return res.status(500).send('server/db error on attempt to save user to db')
          let userCopy = newUser.toObject()
          delete userCopy.password
+   		userCopy.password = undefined
+
          return res.json(userCopy).status(200)
        })
      })
@@ -43,6 +45,7 @@ function authController(UserMod){
 		  req.login(user, (err)=>{
 			  if (err) { return res.status(500).send(err) }
 			  delete user.password
+			  user.password = undefined
 			  return res.json(user).status(200)
 		  })
 		  next()

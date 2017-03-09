@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar} from '../components/component-navbar.js'
+import {LoginComponent} from '../components/component-form_login.js'
 import {ACTIONS} from '../actions.js'
 import {STORE} from '../store.js'
 
@@ -9,7 +9,7 @@ export const LoginView = React.createClass({
 		return (
 
 			<div className="container">
-
+				<LoginComponent/>
 				
 			</div>
 		)
